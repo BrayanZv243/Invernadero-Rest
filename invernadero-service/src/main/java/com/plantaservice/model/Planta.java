@@ -23,7 +23,7 @@ public class Planta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_planta;
-    
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "tipo", nullable = false)
@@ -35,8 +35,9 @@ public class Planta {
     @Column(name = "humedadOptima", nullable = false)
     private double humedadOptima;
 
-    public Planta(){
+    public Planta() {
     }
+
     public Planta(Integer id_planta, String nombre, LocalDateTime ultimaVezRegada, Double ultimaHumedad, double humedadOptima, String tipo) {
         this.id_planta = id_planta;
         this.nombre = nombre;
@@ -96,8 +97,12 @@ public class Planta {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Planta planta)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Planta planta)) {
+            return false;
+        }
         return Double.compare(planta.getHumedadOptima(), getHumedadOptima()) == 0 && Objects.equals(getId_planta(), planta.getId_planta()) && Objects.equals(getNombre(), planta.getNombre()) && Objects.equals(getTipo(), planta.getTipo()) && Objects.equals(getUltimaVezRegada(), planta.getUltimaVezRegada()) && Objects.equals(getUltimaHumedad(), planta.getUltimaHumedad());
     }
 
@@ -108,13 +113,13 @@ public class Planta {
 
     @Override
     public String toString() {
-        return "Planta{" +
-                "id_planta=" + id_planta +
-                ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", ultimaVezRegada=" + ultimaVezRegada +
-                ", ultimaHumedad=" + ultimaHumedad +
-                ", humedadOptima=" + humedadOptima +
-                '}';
+        return "Planta{"
+                + "id_planta=" + id_planta
+                + ", nombre='" + nombre + '\''
+                + ", tipo='" + tipo + '\''
+                + ", ultimaVezRegada=" + ultimaVezRegada
+                + ", ultimaHumedad=" + ultimaHumedad
+                + ", humedadOptima=" + humedadOptima
+                + '}';
     }
 }

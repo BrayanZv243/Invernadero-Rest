@@ -30,33 +30,34 @@ public class PlantaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Planta> actualizarPlanta(@PathVariable Integer id, @RequestBody Planta planta) {
-        Planta plantaEncontrada = plantaServicio.obtenerPlantaPorId(id);
+        Optional<Planta> plantaEncontrada = plantaServicio.obtenerPlantaPorId(id);
 
-        if(plantaEncontrada == null){
+        if (plantaEncontrada.isEmpty()) {
             return ResponseEntity.unprocessableEntity().build();
         }
+        
+        Planta plantaActualizada = plantaEncontrada.get();
 
-        planta.setId_planta(plantaEncontrada.getId_planta());
-        planta.setNombre(plantaEncontrada.getNombre());
-        planta.setTipo(plantaEncontrada.getTipo());
-        planta.setHumedadOptima(plantaEncontrada.getHumedadOptima());
-        planta.setUltimaHumedad(plantaEncontrada.getUltimaHumedad());
-        planta.setUltimaVezRegada(plantaEncontrada.getUltimaVezRegada());
+        plantaActualizada.setNombre(planta.getNombre());
+        plantaActualizada.setTipo(planta.getTipo());
+        plantaActualizada.setHumedadOptima(planta.getHumedadOptima());
+        plantaActualizada.setUltimaHumedad(planta.getUltimaHumedad());
+        plantaActualizada.setUltimaVezRegada(planta.getUltimaVezRegada());
 
-        return ResponseEntity.ok(planta);
+        return ResponseEntity.ok(plantaServicio.actualizarPlanta(plantaActualizada));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Planta> eliminarPlanta(@PathVariable Integer id) {
-        Planta plantaEncontrada = plantaServicio.obtenerPlantaPorId(id);
+        Optional<Planta> plantaEncontrada = plantaServicio.obtenerPlantaPorId(id);
 
-        if(plantaEncontrada == null){
+        if (plantaEncontrada.isEmpty()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
         plantaServicio.eliminarPlantaPorId(id);
 
-        return ResponseEntity.ok(plantaEncontrada);
+        return ResponseEntity.ok(plantaEncontrada.get());
     }
 
     @GetMapping
@@ -66,10 +67,10 @@ public class PlantaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Planta> obtenerPlantaPorId(@PathVariable Integer id) {
-        Planta plantaEncontrada = plantaServicio.obtenerPlantaPorId(id);
-        if (plantaEncontrada == null) {
+        Optional<Planta> plantaEncontrada = plantaServicio.obtenerPlantaPorId(id);
+        if (plantaEncontrada.isEmpty()) {
             return ResponseEntity.unprocessableEntity().build();
         }
-        return ResponseEntity.ok(plantaEncontrada);
+        return ResponseEntity.ok(plantaEncontrada.get());
     }
 }

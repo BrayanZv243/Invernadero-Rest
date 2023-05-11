@@ -5,6 +5,7 @@ import com.plantaservice.repository.IPlantaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlantaServicio implements IPlantaServicio {
@@ -23,8 +24,8 @@ public class PlantaServicio implements IPlantaServicio {
     }
 
     @Override
-    public Planta obtenerPlantaPorId(Integer id) {
-        return repositorio.findById(id).get();
+    public Optional<Planta> obtenerPlantaPorId(Integer id) {
+        return repositorio.findById(id);
     }
 
     @Override
