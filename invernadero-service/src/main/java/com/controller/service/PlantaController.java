@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,14 +36,12 @@ public class PlantaController {
         if (plantaEncontrada.isEmpty()) {
             return ResponseEntity.unprocessableEntity().build();
         }
-        
+
         Planta plantaActualizada = plantaEncontrada.get();
 
         plantaActualizada.setNombre(planta.getNombre());
         plantaActualizada.setTipo(planta.getTipo());
-        plantaActualizada.setHumedadOptima(planta.getHumedadOptima());
-        plantaActualizada.setUltimaHumedad(planta.getUltimaHumedad());
-        plantaActualizada.setUltimaVezRegada(planta.getUltimaVezRegada());
+        plantaActualizada.setHumedad_optima(planta.getHumedad_optima());
 
         return ResponseEntity.ok(plantaServicio.actualizarPlanta(plantaActualizada));
     }

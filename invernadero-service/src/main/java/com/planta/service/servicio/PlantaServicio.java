@@ -9,10 +9,10 @@ import java.util.Optional;
 
 @Service
 public class PlantaServicio implements IPlantaServicio {
-    
+
     @Autowired
     private IPlantaRepository repositorio;
-    
+
     @Override
     public List<Planta> listarTodasLasPlantas() {
         return repositorio.findAll();
@@ -37,6 +37,5 @@ public class PlantaServicio implements IPlantaServicio {
     public void eliminarPlantaPorId(Integer id) {
         repositorio.deleteById(id);
     }
-    
-    
+
 }

@@ -24,12 +24,29 @@ CREATE TABLE IF NOT EXISTS `bd_invernadero`.`plantas` (
   `id_planta` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `tipo` VARCHAR(100) NOT NULL,
-  `ultima_vez_regada` DATETIME NOT NULL,
-  `ultima_humedad` DOUBLE NOT NULL,
   `humedad_optima` DOUBLE NOT NULL,
   PRIMARY KEY (`id_planta`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `bd_invernadero`.`registro_plantas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_invernadero`.`registro_plantas` (
+  `idregistro_plantas` INT NOT NULL AUTO_INCREMENT,
+  `planta_id_planta` INT NOT NULL,
+  `ultima_humedad` DOUBLE NOT NULL,
+  `ultima_vez_regada` DATETIME NOT NULL,
+  PRIMARY KEY (`idregistro_plantas`),
+  INDEX `id_planta_idx` (`planta_id_planta` ASC) VISIBLE,
+  CONSTRAINT `id_planta`
+    FOREIGN KEY (`planta_id_planta`)
+    REFERENCES `bd_invernadero`.`plantas` (`id_planta`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

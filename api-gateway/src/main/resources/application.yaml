@@ -13,6 +13,9 @@ management:
       probability: 1.0
 
 spring:
+  main:
+      web-application-type: reactive
+      allow-bean-definition-overriding: true
   application:
     name: api-gateway
   config:
@@ -24,3 +27,4 @@ spring:
           uri: lb://invernadero-service
           predicates:
             - Path=/planta/**
+    

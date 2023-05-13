@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
-@ComponentScan(basePackages = {"com.controller.service", "com.planta.service.servicio"})
+@ComponentScan(basePackages = {"com.controller.service", "com.planta.service.servicio","com.controller.service.configuracion"})
 @EntityScan("com.plantaservice.model")
 @EnableJpaRepositories("com.plantaservice.repository")
 public class PlantaServiceApplication {
